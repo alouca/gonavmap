@@ -3,7 +3,8 @@ gonavmap
 
 A simple library to help you traverse maps of maps
 
-== Example ==
+Example
+-------
 
 // This will retrieve the map[string]interface{} under testing -> further
 f := Get(testData, "testing.further")
