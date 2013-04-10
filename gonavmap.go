@@ -6,9 +6,11 @@ package gonavmap
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 )
 
+// Traverses the map to retrieve the elements matched from the path
 func Get(m map[string]interface{}, path string) map[string]interface{} {
 	parts := strings.Split(path, ".")
 	if len(parts) < 2 {
@@ -49,6 +51,25 @@ func Value(m map[string]interface{}, path string) interface{} {
 	}
 
 	return nil
+}
+
+// It will perform a pattern search on the key-names of the map, returning only the keys that match in a new map[string]interface{}
+func Filter(m map[string]interface{}, filter string) map[string]interface{} {
+	re := regexp.MustCompile(filter)
+
+	if re == nil {
+		return nil
+	}
+
+	res := make(map[string]interface{})
+
+	for k, v := range m {
+		if re.MatchString(k) {
+			res[k] = v
+		}
+	}
+
+	return res
 }
 
 func navmap(m map[string]interface{}, path []string) map[string]interface{} {

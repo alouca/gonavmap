@@ -10,8 +10,9 @@ import (
 
 var (
 	testData = map[string]interface{}{
-		"Int1": 1,
-		"Str1": "lala",
+		"Int1":     1,
+		"Str1":     "lala",
+		"testing1": "test string",
 		"testing": map[string]interface{}{
 			"Int2": 2,
 			"Str2": "lolo",
@@ -61,6 +62,17 @@ func TestSet(t *testing.T) {
 		}
 	} else {
 		t.Fatalf("Error while setting value: %s\n", e.Error())
+	}
+
+}
+
+func TestFilter(t *testing.T) {
+	e := Filter(testData, "testing")
+
+	if e != nil {
+		t.Logf("Got response %+v\n", e)
+	} else {
+		t.Fatalf("Got nil response")
 	}
 
 }

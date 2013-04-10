@@ -1,4 +1,4 @@
 gonavmap
 ========
 
-A simple library to help you traverse maps of maps
+A simple library to help you traverse maps of maps. 
